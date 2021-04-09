@@ -1,0 +1,10 @@
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\bin\Debug\TowerDefense.exe.config
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\bin\Debug\TowerDefense.exe
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\bin\Debug\TowerDefense.pdb
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.csprojAssemblyReference.cache
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.Form1.resources
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.Properties.Resources.resources
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.csproj.GenerateResource.cache
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.csproj.CoreCompileInputs.cache
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.exe
+C:\Users\headchezze\source\repos\TowerDefense\TowerDefense\obj\Debug\TowerDefense.pdb
