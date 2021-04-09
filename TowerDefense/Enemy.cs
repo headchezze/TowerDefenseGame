@@ -56,6 +56,11 @@ namespace TowerDefense
                     break;
             }
         }
+        public void WaypointIntersection(Waypoint waypoint)
+        {
+            if (this.Picture.Location == waypoint.Picture.Location)
+                Direction = waypoint.Direction;
+        }
 
     }
 }

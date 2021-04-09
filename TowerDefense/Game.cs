@@ -20,7 +20,7 @@ namespace TowerDefense
         Timer spawnTimer = new Timer();
         Timer stepTimer = new Timer();
 
-        List<Enemy> enemies = new List<Enemy>(3);
+        List<Enemy> enemies = new List<Enemy>();
         List<Waypoint> waypoints = new List<Waypoint>();
         public int counter = 0;
         public void Start()
@@ -28,15 +28,20 @@ namespace TowerDefense
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new Form1();
-
             spawnTimer.Tick += SpawnEnemy;
-            spawnTimer.Interval = 1000;
+            spawnTimer.Interval = 2000;
             spawnTimer.Start();
             stepTimer.Tick += MakeStep;
             stepTimer.Interval = 500;
             stepTimer.Start();
-
+            CreateWaypoints();
             Application.Run(MainForm);
+        }
+        public void CreateWaypoints()
+        {
+            waypoints = new List<Waypoint>() { new Waypoint(10, 10, Directions.left), new Waypoint(7, 10, Directions.up), new Waypoint(7, 4, Directions.left) };
+            foreach (Waypoint waypoint in waypoints)
+                MainForm.Controls.Add(waypoint.Picture);
         }
         public void SpawnEnemy(object sender, EventArgs e)
         {
@@ -47,7 +52,13 @@ namespace TowerDefense
         public void MakeStep(object sender, EventArgs e)
         {
             foreach (Enemy enemy in enemies)
+            {
                 enemy.Move();
+                foreach (Waypoint waypoint in waypoints)
+                {
+                    enemy.WaypointIntersection(waypoint);
+                }
+            }
         }
     }
 }
