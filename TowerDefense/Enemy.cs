@@ -32,15 +32,15 @@ namespace TowerDefense
         {
             Health = 100;
             picture = new PictureBox();
-            picture.BackgroundImage = Properties.Resources.LnvkNyzKNA8;
-            picture.Location = new Point(400, 40);
-            picture.Size = new Size(40, 40);
-            picture.BackgroundImageLayout = ImageLayout.Stretch;
+            picture.BackgroundImage = Properties.Resources.LnvkNyzKNA8; //Добавляет картинку для противника
+            picture.Location = new Point(400, 40); //Начальная точка где спавниться противник(11-я клетка слева, 3-я сверху)
+            picture.Size = new Size(40, 40); //Размер рамки для картинки
+            picture.BackgroundImageLayout = ImageLayout.Stretch; //Картинка меняет свой размер чтобы входить в рамку
             this.Direction = Game.Directions.down;
         }
         public void Move()
         {
-            switch (direction)
+            switch (direction) //Движение по направлению, заданному через точки поворота
             {
                 case Game.Directions.down:
                     this.picture.Location = new Point(picture.Location.X, picture.Location.Y + 40);
@@ -56,7 +56,7 @@ namespace TowerDefense
                     break;
             }
         }
-        public void WaypointIntersection(Waypoint waypoint)
+        public void WaypointIntersection(Waypoint waypoint) //Изменение движения через точки поворота
         {
             if (this.Picture.Location == waypoint.Picture.Location)
                 Direction = waypoint.Direction;

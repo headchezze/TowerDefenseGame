@@ -22,22 +22,22 @@ namespace TowerDefense
             get { return direction; }
             set { direction = value; }
         }
-        public Waypoint()
+        public Waypoint() //Создание точки поворота без полных данных
         {
             Random rnd = new Random();
             picture = new PictureBox();
             picture.BackColor = Color.Red;
-            picture.Size = new Size(40, 40);
+            picture.Size = new Size(40, 40); //Размер клетки в пикселях
             picture.Location = new Point(40 * rnd.Next(0, 20), 40 * rnd.Next(0, 20));
             direction = (Game.Directions)rnd.Next(0, 4);
         }
-        public Waypoint(int x, int y, Game.Directions direction)
+        public Waypoint(int x, int y, Game.Directions direction) //Создание точки поворота с полными данными
         {
             Random rnd = new Random();
             picture = new PictureBox();
             picture.BackColor = Color.Red;
-            picture.Size = new Size(40, 40);
-            picture.Location = new Point(40 * x, 40 * y);
+            picture.Size = new Size(40, 40); //Размер клетки в пикселях
+            picture.Location = new Point(40 * x, 40 * y); //Точка создаётся по пикселям
             this.direction = direction;
         }
     }
