@@ -32,7 +32,7 @@ namespace TowerDefense
         {
             Health = 100;
             picture = new PictureBox();
-            picture.BackgroundImage = Image.FromFile(@"C:\Users\headchezze\Desktop\MixedPresentAkitainu-size_restricted.gif");
+            picture.BackgroundImage = Properties.Resources.LnvkNyzKNA8;
             picture.Location = new Point(400, 40);
             picture.Size = new Size(40, 40);
             picture.BackgroundImageLayout = ImageLayout.Stretch;

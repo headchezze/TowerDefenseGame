@@ -18,3 +18,13 @@ C:\Users\headchezze\Documents\GitHub\TowerDefenseGame\TowerDefense\obj\Debug\Tow
 C:\Users\headchezze\Documents\GitHub\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.csproj.CoreCompileInputs.cache
 C:\Users\headchezze\Documents\GitHub\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.exe
 C:\Users\headchezze\Documents\GitHub\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.pdb
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\bin\Debug\TowerDefense.exe.config
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\bin\Debug\TowerDefense.exe
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\bin\Debug\TowerDefense.pdb
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.csprojAssemblyReference.cache
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.Form1.resources
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.Properties.Resources.resources
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.csproj.GenerateResource.cache
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.csproj.CoreCompileInputs.cache
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.exe
+C:\Users\headchezze-thinkpad\source\repos\TowerDefenseGame\TowerDefense\obj\Debug\TowerDefense.pdb
