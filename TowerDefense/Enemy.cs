@@ -40,27 +40,44 @@ namespace TowerDefense
         }
         public void Move()
         {
-            switch (direction) //Движение по направлению, заданному через точки поворота
-            {
                 case Game.Directions.down:
-                    this.picture.Location = new Point(picture.Location.X, picture.Location.Y + 40);
+ 
+                switch (direction) //Движение по направлению, заданному через точки поворота
+                {
+                    case Game.Directions.down:
+                        this.picture.Location = new Point(picture.Location.X, picture.Location.Y + 40);
+                        break;
+                    case Game.Directions.up:
+                        this.picture.Location = new Point(picture.Location.X, picture.Location.Y - 40);
+                        break;
+                    case Game.Directions.right:
+                        this.picture.Location = new Point(picture.Location.X + 40, picture.Location.Y);
+                        break;
+                    case Game.Directions.left:
+                        this.picture.Location = new Point(picture.Location.X - 40, picture.Location.Y);
                     break;
-                case Game.Directions.up:
-                    this.picture.Location = new Point(picture.Location.X, picture.Location.Y - 40);
-                    break;
-                case Game.Directions.right:
-                    this.picture.Location = new Point(picture.Location.X + 40, picture.Location.Y);
-                    break;
-                case Game.Directions.left:
-                    this.picture.Location = new Point(picture.Location.X - 40, picture.Location.Y);
-                    break;
-            }
+                    default:
+                        break;
+                }
+            
         }
         public void WaypointIntersection(Waypoint waypoint) //Изменение движения через точки поворота
         {
             if (this.Picture.Location == waypoint.Picture.Location)
+            {
                 Direction = waypoint.Direction;
+                //Убрать проверку на смерть отсюда на метод действующий каждый фрейм
+                Die(); //Убивает при достижении точки перехода
+            }
         }
-
+        public void Die() //Противник "умирает"
+        {
+            if (this.Health <= 0) //Если здоровье меньше или равно 0 то противник выносится за экран и перестаёт двигаться
+            {
+                this.Direction = Game.Directions.still;
+                this.Picture.Location = new Point(-100, -100);
+                
+            }
+        }
     }
 }
