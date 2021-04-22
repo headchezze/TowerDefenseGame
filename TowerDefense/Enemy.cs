@@ -40,7 +40,6 @@ namespace TowerDefense
         }
         public void Move()
         {
-                case Game.Directions.down:
  
                 switch (direction) //Движение по направлению, заданному через точки поворота
                 {
