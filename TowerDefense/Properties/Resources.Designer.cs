@@ -69,5 +69,15 @@ namespace TowerDefense.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap png_clipart_drawing_castle_sand_art_and_play_coloring_book_castle_angle_text {
+            get {
+                object obj = ResourceManager.GetObject("png_clipart_drawing_castle_sand_art_and_play_coloring_book_castle_angle_text", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

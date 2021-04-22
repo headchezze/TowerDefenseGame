@@ -11,17 +11,18 @@ namespace TowerDefense
     {
         public enum Directions
         {
-            up = 0,
-            down = 1,
-            left = 2,
-            right = 4
+            Up = 0,
+            Down = 1,
+            Left = 2,
+            Right = 4
         }
         Form1 MainForm;
-        Timer spawnTimer = new Timer(); //Таймер для спавна
-        Timer stepTimer = new Timer(); //Таймер для шагов
+        public Timer spawnTimer = new Timer(); //Таймер для спавна
+        public Timer stepTimer = new Timer(); //Таймер для шагов
 
         List<Enemy> enemies = new List<Enemy>();
         List<Waypoint> waypoints = new List<Waypoint>();
+        Base base1;
         public int counter = 0;
         public void Start()
         {
@@ -34,15 +35,18 @@ namespace TowerDefense
             stepTimer.Tick += MakeStep; 
             stepTimer.Interval = 500;
             stepTimer.Start();  //Двигается каждые пол секунды
-            CreateWaypoints();
+            DrawImages();
             Application.Run(MainForm);
         }
-        public void CreateWaypoints()
+        public void DrawImages()
         {
             //Создаёт точки поворота влево, вверх и влево
-            waypoints = new List<Waypoint>() { new Waypoint(10, 10, Directions.left), new Waypoint(7, 10, Directions.up), new Waypoint(7, 4, Directions.left) };
+            waypoints = new List<Waypoint>() { new Waypoint(10, 10, Directions.Left), new Waypoint(7, 10, Directions.Up), new Waypoint(7, 4, Directions.Left) };
             foreach (Waypoint waypoint in waypoints) //Все точки поворота получают картинку
                 MainForm.Controls.Add(waypoint.Picture);
+
+            base1 = new Base();
+            MainForm.Controls.Add(base1.Picture);
         }
         public void SpawnEnemy(object sender, EventArgs e) //Создание противников
         {
@@ -55,10 +59,7 @@ namespace TowerDefense
             foreach (Enemy enemy in enemies) //Все противники
             {
                 enemy.Move();
-                foreach (Waypoint waypoint in waypoints)
-                {
-                    enemy.WaypointIntersection(waypoint);
-                }
+                enemy.EntityIntersection(waypoints, base1);
             }
         }
     }
