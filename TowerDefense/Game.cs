@@ -23,6 +23,7 @@ namespace TowerDefense
         List<Enemy> enemies = new List<Enemy>();
         List<Waypoint> waypoints = new List<Waypoint>();
         Base base1;
+        Tower tower1;
         public int counter = 0;
         public void Start()
         {
@@ -47,6 +48,9 @@ namespace TowerDefense
 
             base1 = new Base();
             MainForm.Controls.Add(base1.Picture);
+
+            tower1 = new Tower(7, 3);
+            MainForm.Controls.Add(tower1.Picture);
         }
         public void SpawnEnemy(object sender, EventArgs e) //Создание противников
         {
@@ -59,8 +63,14 @@ namespace TowerDefense
             foreach (Enemy enemy in enemies) //Все противники
             {
                 enemy.Move();
-                enemy.EntityIntersection(waypoints, base1);
+                enemy.EntityIntersection(waypoints, base1, tower1);
             }
+        }
+
+        public void TimeStop()
+        {
+            this.stepTimer.Enabled = false;
+            this.spawnTimer.Enabled = false;
         }
     }
 }

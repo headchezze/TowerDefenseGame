@@ -11,11 +11,17 @@ namespace TowerDefense
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+        /// 
+        public static Game game;
         [STAThread]
         static void Main()
         {
-            Game game = new Game();
+            game = new Game();
             game.Start();
+        }
+        public static void GameOver()
+        {
+            game.TimeStop();
         }
     }
 }

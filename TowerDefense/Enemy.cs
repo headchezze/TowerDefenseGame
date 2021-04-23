@@ -66,7 +66,7 @@ namespace TowerDefense
                     break;
             }
         }
-        public void EntityIntersection(List<Waypoint> waypoints, Base base1) //Изменение движения через точки поворота
+        public void EntityIntersection(List<Waypoint> waypoints, Base base1, Tower tower) //Изменение движения через точки поворота
         {
             foreach (Waypoint waypoint in waypoints)
             {
@@ -79,6 +79,9 @@ namespace TowerDefense
                 base1.Health -= 1;
                 this.Health = 0;
             }
+
+            if (tower.AreIntersected(this.picture.Location))
+                Health -= tower.Damage;
         }
     }
 }

@@ -21,6 +21,7 @@ namespace TowerDefense
                 if (value <= 0)
                 {
                     MessageBox.Show("GAME OVER");
+                    Program.GameOver();
                 }
                 health = value;
             }
