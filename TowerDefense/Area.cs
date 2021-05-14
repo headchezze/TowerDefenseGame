@@ -10,7 +10,7 @@ namespace TowerDefense
     {
         public  int Left, Top, Width, Height;
 
-        public Area(int left, int top, int width, int height)
+        public Area(int left, int top, int width, int height) //Зона
         {
             Left = left;
             Top = top;

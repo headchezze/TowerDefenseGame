@@ -33,7 +33,7 @@ namespace TowerDefense
             spawnTimer.Tick += SpawnEnemy; 
             spawnTimer.Interval = 2000;
             spawnTimer.Start(); //Спавнит каждые 2 секунды
-            stepTimer.Tick += MakeStep; 
+            stepTimer.Tick += MakeStep;
             stepTimer.Interval = 500;
             stepTimer.Start();  //Двигается каждые пол секунды
             DrawImages();
@@ -67,7 +67,7 @@ namespace TowerDefense
             }
         }
 
-        public void TimeStop()
+        public void TimeStop() //Останавливает игру
         {
             this.stepTimer.Enabled = false;
             this.spawnTimer.Enabled = false;

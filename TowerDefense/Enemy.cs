@@ -66,22 +66,22 @@ namespace TowerDefense
                     break;
             }
         }
-        public void EntityIntersection(List<Waypoint> waypoints, Base base1, Tower tower) //Изменение движения через точки поворота
+        public void EntityIntersection(List<Waypoint> waypoints, Base base1, Tower tower) //Проверка позиции
         {
-            foreach (Waypoint waypoint in waypoints)
+            foreach (Waypoint waypoint in waypoints) //Проверка на пересечение точки поворота
             {
                 if (this.Picture.Location == waypoint.Picture.Location)
-                    Direction = waypoint.Direction;
+                    Direction = waypoint.Direction; //Изменение направления движения
             }
 
-            if (this.Picture.Location == base1.Picture.Location)
+            if (this.Picture.Location == base1.Picture.Location) //Проверка на достижения базы
             {
-                base1.Health -= 1;
-                this.Health = 0;
+                base1.Health -= 1; //Наносит урон
+                this.Health = 0; //Умирает после
             }
 
-            if (tower.AreIntersected(this.picture.Location))
-                Health -= tower.Damage;
+            if (tower.AreIntersected(this.picture.Location)) //Если возле башние
+                Health -= tower.Damage; //Получает урон от башни
         }
     }
 }
