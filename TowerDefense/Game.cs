@@ -16,14 +16,16 @@ namespace TowerDefense
             Left = 2,
             Right = 4
         }
-        Form1 MainForm;
+        static Form1 MainForm;
         public Timer spawnTimer = new Timer(); //Таймер для спавна
         public Timer stepTimer = new Timer(); //Таймер для шагов
 
         List<Enemy> enemies = new List<Enemy>();
         List<Waypoint> waypoints = new List<Waypoint>();
+        List<Tower> towers = new List<Tower>();
+        List<Entity> highgrounds;
         Base base1;
-        Tower tower1;
+        private int score = 0;
         public int counter = 0;
         public void Start()
         {
@@ -49,28 +51,51 @@ namespace TowerDefense
             base1 = new Base();
             MainForm.Controls.Add(base1.Picture);
 
-            tower1 = new Tower(7, 3);
-            MainForm.Controls.Add(tower1.Picture);
+            highgrounds = new List<Entity>() { new Entity(7, 3), new Entity(6, 6), new Entity(9, 8) };
+            foreach (Entity highground in highgrounds)
+                MainForm.Controls.Add(highground.Picture);
         }
         public void SpawnEnemy(object sender, EventArgs e) //Создание противников
         {
             enemies.Add(new Enemy());
-            MainForm.Controls.Add(enemies[counter].Picture);
-            counter++;
+            for (int i = 0; i < enemies.Count; i++)
+            {
+                if (enemies[i] != null)
+                    MainForm.Controls.Add(enemies[i].Picture);
+            }
         }
         public void MakeStep(object sender, EventArgs e) //Делает шаг
         {
-            foreach (Enemy enemy in enemies) //Все противники
+            for (int i = 0; i < enemies.Count; i++) //Все противники
             {
-                enemy.Move();
-                enemy.EntityIntersection(waypoints, base1, tower1);
+                enemies[i].Move();
+                enemies[i].EntityIntersection(waypoints, towers, base1);
             }
+            DrawTowers();
         }
-
+        public void DrawTowers()
+        {
+            foreach (Tower tower in towers)
+                MainForm.Controls.Add(tower.Picture);
+        }
         public void TimeStop()
         {
             this.stepTimer.Enabled = false;
             this.spawnTimer.Enabled = false;
+        }
+        public void AddTower(Entity entity)
+        {
+            towers.Add(new Tower(entity.Picture.Location.X / 40, entity.Picture.Location.Y / 40));
+            entity.Picture.Dispose();
+            highgrounds.Remove(entity);
+        }
+        public void KillEnemy(Enemy enemy)
+        {
+            enemy.Picture.Dispose();
+            enemies.Remove(enemy);
+            score += 100;
+            MainForm.Score.Text = score.ToString();
+            MainForm.Score.Update();
         }
     }
 }

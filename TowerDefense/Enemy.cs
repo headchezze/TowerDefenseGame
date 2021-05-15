@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace TowerDefense
 {
-    public class Enemy
+    public class Enemy : IDisposable
     {
         private int health;
         private PictureBox picture;
@@ -19,9 +19,7 @@ namespace TowerDefense
             {
                 if (value <= 0)
                 {
-                    picture.Location = new Point(400, 40);
-                    health = 100;
-                    this.Direction = Game.Directions.Down;
+                    Program.game.KillEnemy(this);
                 }
                 else
                     health = value;
@@ -66,8 +64,14 @@ namespace TowerDefense
                     break;
             }
         }
-        public void EntityIntersection(List<Waypoint> waypoints, Base base1, Tower tower) //Изменение движения через точки поворота
+        public void EntityIntersection(List<Waypoint> waypoints, List<Tower> towers, Base base1) //Изменение движения через точки поворота
         {
+            foreach (Tower tower in towers)
+            {
+                if (tower.AreIntersected(this.picture.Location))
+                    Health -= tower.Damage;
+            }
+
             foreach (Waypoint waypoint in waypoints)
             {
                 if (this.Picture.Location == waypoint.Picture.Location)
@@ -79,9 +83,32 @@ namespace TowerDefense
                 base1.Health -= 1;
                 this.Health = 0;
             }
+        }
 
-            if (tower.AreIntersected(this.picture.Location))
-                Health -= tower.Damage;
+        private bool disposed = false;
+
+        public void Dispose()
+        {
+            Dispose(true);
+
+            GC.SuppressFinalize(true);
+        }
+        public virtual void Dispose(bool disposing)
+        {
+            if (!disposed)
+            {
+                if (disposing)
+                {
+                    disposed = true;
+
+                }
+                disposed = true;
+            }
+        }
+
+        ~Enemy()
+        {
+            Dispose(false);
         }
     }
 }

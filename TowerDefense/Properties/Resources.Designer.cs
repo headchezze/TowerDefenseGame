@@ -63,6 +63,16 @@ namespace TowerDefense.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap highground {
+            get {
+                object obj = ResourceManager.GetObject("highground", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap LnvkNyzKNA8 {
             get {
                 object obj = ResourceManager.GetObject("LnvkNyzKNA8", resourceCulture);

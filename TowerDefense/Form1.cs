@@ -16,6 +16,8 @@ namespace TowerDefense
         private const int windowHeight = 800;
         private const int cellSize = 40;
         public Timer SpawnTimer = new Timer();
+        public Label Score;
+        public Label ScoreBoard;
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +27,14 @@ namespace TowerDefense
             globalTimer.Tick += new EventHandler(Update);
             globalTimer.Interval = 500;
             globalTimer.Start();
+            Score = new Label();
+            ScoreBoard = new Label();
+            Score.Location = new Point(830, 100);
+            ScoreBoard.Location = new Point(800, 100);
+            ScoreBoard.Text = "Score:";
+            Score.Text = "0";
+            this.Controls.Add(Score);
+            this.Controls.Add(ScoreBoard);
         }
         private void GenerateMap()
         {

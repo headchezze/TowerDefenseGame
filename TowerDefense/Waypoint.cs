@@ -35,8 +35,8 @@ namespace TowerDefense
         {
             Random rnd = new Random();
             picture = new PictureBox();
-            picture.BackColor = Color.Red;
-            picture.Size = new Size(40, 40); //Размер клетки в пикселях
+            //picture.BackColor = Color.Red;
+            picture.Size = new Size(1, 1); //Размер клетки в пикселях
             picture.Location = new Point(40 * x, 40 * y); //Точка создаётся по пикселям
             this.direction = direction;
         }
