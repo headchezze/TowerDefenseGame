@@ -18,7 +18,7 @@ namespace TowerDefense
             get { return health; }
             set 
             {
-                if (value <= 0)
+                if (value <= 0) //Если 5 противников достигнут базы, игра проиграна
                 {
                     MessageBox.Show("GAME OVER");
                     Program.GameOver();
@@ -35,8 +35,8 @@ namespace TowerDefense
 
         public Base()
         {
-            Health = 5;
-            picture = new PictureBox();
+            Health = 5; //Если 5 противников достигнут базы, игра проиграна
+            picture = new PictureBox(); //Картинка для бащы
             picture.BackgroundImage = Properties.Resources.png_clipart_drawing_castle_sand_art_and_play_coloring_book_castle_angle_text;
             picture.Location = new Point(40, 160);
             picture.Size = new Size(40, 40);
