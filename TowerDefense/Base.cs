@@ -20,8 +20,8 @@ namespace TowerDefense
             {
                 if (value <= 0) //Если 5 противников достигнут базы, игра проиграна
                 {
-                    MessageBox.Show("GAME OVER");
                     Program.GameOver();
+                    MessageBox.Show("GAME OVER");
                 }
                 health = value;
             }

@@ -25,8 +25,8 @@ namespace TowerDefense
         List<Tower> towers = new List<Tower>();
         List<Entity> highgrounds;
         Base base1;
-        private int score = 0;
-        public int counter = 0;
+        private int score = 300;
+        private int counter = 1;
         public void Start()
         {
             Application.EnableVisualStyles();
@@ -39,6 +39,7 @@ namespace TowerDefense
             stepTimer.Interval = 500;
             stepTimer.Start();  //Двигается каждые пол секунды
             DrawImages();
+            UpdateScore();
             Application.Run(MainForm);
         }
         public void DrawImages()
@@ -57,7 +58,7 @@ namespace TowerDefense
         }
         public void SpawnEnemy(object sender, EventArgs e) //Создание противников
         {
-            enemies.Add(new Enemy());
+            enemies.Add(new Enemy(counter));
             for (int i = 0; i < enemies.Count; i++)
             {
                 if (enemies[i] != null)
@@ -85,15 +86,26 @@ namespace TowerDefense
         }
         public void AddTower(Entity entity)
         {
-            towers.Add(new Tower(entity.Picture.Location.X / 40, entity.Picture.Location.Y / 40));
-            entity.Picture.Dispose();
-            highgrounds.Remove(entity);
+            if (score >= 300)
+            {
+                towers.Add(new Tower(entity.Picture.Location.X / 40, entity.Picture.Location.Y / 40));
+                entity.Picture.Dispose();
+                highgrounds.Remove(entity);
+                score -= 300;
+                UpdateScore();
+            }
         }
         public void KillEnemy(Enemy enemy)
         {
             enemy.Picture.Dispose();
             enemies.Remove(enemy);
             score += 100;
+            counter++;
+            UpdateScore();
+        }
+
+        private void UpdateScore()
+        {
             MainForm.Score.Text = score.ToString();
             MainForm.Score.Update();
         }

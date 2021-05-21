@@ -12,6 +12,15 @@ namespace TowerDefense
     {
         private int health;
         private PictureBox picture;
+        private Dictionary<int, int> Level = new Dictionary<int, int>()
+        {
+            { 1, 1 },
+            { 5, 2 },
+            { 15, 3 },
+            { 30, 4 }
+        };
+
+        private static int multiplyer = 1;
         public int Health
         {
             get { return health; }
@@ -36,9 +45,11 @@ namespace TowerDefense
             get { return direction; }
             set { direction = value; }
         }
-        public Enemy()
+        public Enemy(int level)
         {
-            Health = 100;
+            if (Level.ContainsKey(level))
+                multiplyer = Level[level];
+            Health = 100 * multiplyer;
             picture = new PictureBox();
             picture.BackgroundImage = Properties.Resources.LnvkNyzKNA8; //Добавляет картинку для противника
             picture.Location = new Point(400, 40); //Начальная точка где спавниться противник(11-я клетка слева, 3-я сверху)
