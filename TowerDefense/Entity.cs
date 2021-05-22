@@ -36,7 +36,7 @@ namespace TowerDefense
         }
         public void Entity_Click(object sender, EventArgs e)
         {
-            Program.game.AddTower(this);
+            Controller.AddTower(this);
         }
         public void Dispose() { }
     }

@@ -28,7 +28,7 @@ namespace TowerDefense
             {
                 if (value <= 0)
                 {
-                    Program.game.KillEnemy(this);
+                    Controller.KillEnemy(this);
                 }
                 else
                     health = value;

@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TowerDefense
 {
-    public class Game
+    public static class Game
     {
         public enum Directions
         {
@@ -16,95 +16,51 @@ namespace TowerDefense
             Left = 2,
             Right = 4
         }
-        static Form1 MainForm;
-        public Timer spawnTimer = new Timer(); //Таймер для спавна
-        public Timer stepTimer = new Timer(); //Таймер для шагов
+        public static Form1 MainForm;
+        public static Timer spawnTimer = new Timer(); //Таймер для спавна
+        public static Timer stepTimer = new Timer(); //Таймер для шагов
 
-        List<Enemy> enemies = new List<Enemy>();
-        List<Waypoint> waypoints = new List<Waypoint>();
-        List<Tower> towers = new List<Tower>();
-        List<Entity> highgrounds;
-        Base base1;
-        private int score = 300;
-        private int counter = 1;
-        public void Start()
+        public static int score = 300;
+        public static int counter = 1;
+        public static void Start()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             MainForm = new Form1();
-            spawnTimer.Tick += SpawnEnemy; 
+            spawnTimer.Tick += Controller.SpawnEnemy; 
             spawnTimer.Interval = 2000;
             spawnTimer.Start(); //Спавнит каждые 2 секунды
-            stepTimer.Tick += MakeStep; 
+            stepTimer.Tick += Controller.MakeStep; 
             stepTimer.Interval = 500;
             stepTimer.Start();  //Двигается каждые пол секунды
             DrawImages();
             UpdateScore();
             Application.Run(MainForm);
         }
-        public void DrawImages()
+        public static void DrawImages()
         {
             //Создаёт точки поворота влево, вверх и влево
-            waypoints = new List<Waypoint>() { new Waypoint(10, 10, Directions.Left), new Waypoint(7, 10, Directions.Up), new Waypoint(7, 4, Directions.Left) };
-            foreach (Waypoint waypoint in waypoints) //Все точки поворота получают картинку
+            foreach (Waypoint waypoint in Controller.waypoints) //Все точки поворота получают картинку
                 MainForm.Controls.Add(waypoint.Picture);
 
-            base1 = new Base();
-            MainForm.Controls.Add(base1.Picture);
+            MainForm.Controls.Add(Controller.base1.Picture);
 
-            highgrounds = new List<Entity>() { new Entity(7, 3), new Entity(6, 6), new Entity(9, 8) };
-            foreach (Entity highground in highgrounds)
+            foreach (Entity highground in Controller.highgrounds)
                 MainForm.Controls.Add(highground.Picture);
         }
-        public void SpawnEnemy(object sender, EventArgs e) //Создание противников
+
+        public static void DrawTowers()
         {
-            enemies.Add(new Enemy(counter));
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                if (enemies[i] != null)
-                    MainForm.Controls.Add(enemies[i].Picture);
-            }
-        }
-        public void MakeStep(object sender, EventArgs e) //Делает шаг
-        {
-            for (int i = 0; i < enemies.Count; i++) //Все противники
-            {
-                enemies[i].Move();
-                enemies[i].EntityIntersection(waypoints, towers, base1);
-            }
-            DrawTowers();
-        }
-        public void DrawTowers()
-        {
-            foreach (Tower tower in towers)
+            foreach (Tower tower in Controller.towers)
                 MainForm.Controls.Add(tower.Picture);
         }
-        public void TimeStop()
+        public static void TimeStop()
         {
-            this.stepTimer.Enabled = false;
-            this.spawnTimer.Enabled = false;
-        }
-        public void AddTower(Entity entity)
-        {
-            if (score >= 300)
-            {
-                towers.Add(new Tower(entity.Picture.Location.X / 40, entity.Picture.Location.Y / 40));
-                entity.Picture.Dispose();
-                highgrounds.Remove(entity);
-                score -= 300;
-                UpdateScore();
-            }
-        }
-        public void KillEnemy(Enemy enemy)
-        {
-            enemy.Picture.Dispose();
-            enemies.Remove(enemy);
-            score += 100;
-            counter++;
-            UpdateScore();
+            stepTimer.Enabled = false;
+            spawnTimer.Enabled = false;
         }
 
-        private void UpdateScore()
+        public static void UpdateScore()
         {
             MainForm.Score.Text = score.ToString();
             MainForm.Score.Update();
